@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 MAINTAINER Pierrick Roger (pierrick.roger@gmail.com)
 
 ENV TOOL_VERSION=1.1.1
-ENV CONTAINER_VERSION=1.0
+ENV CONTAINER_VERSION=1.1
 
 LABEL version="${CONTAINER_VERSION}"
 LABEL tool_version="${TOOL_VERSION}"
@@ -16,6 +16,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 RUN apt-get update
 RUN apt-get -y upgrade
 RUN apt-get install -y --no-install-recommends apt-utils
+RUN apt-get install -y --no-install-recommends wget
 RUN apt-get install -y --no-install-recommends r-base git make g++
 RUN apt-get install -y --no-install-recommends libxml2-dev
 RUN apt-get install -y --no-install-recommends libcurl4-openssl-dev
