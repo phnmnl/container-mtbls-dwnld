@@ -62,14 +62,14 @@ The module downloads a Metabolights study and output data in the W4M 3 files for
 For local individual installation:
 
 ```bash
-docker pull docker-registry.phenomenal-h2020.eu/phnmnl/mtbls-dwnld
+docker pull container-registry.phenomenal-h2020.eu/phnmnl/mtbls-dwnld
 ```
 
 ## Usage Instructions
 
 For direct docker usage:
 ```bash
-docker run docker-registry.phenomenal-h2020.eu/phnmnl/mtbls-dwnld -h
+docker run container-registry.phenomenal-h2020.eu/phnmnl/mtbls-dwnld -h
 ```
 
 ## Publications
