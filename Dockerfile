@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 MAINTAINER Pierrick Roger (pierrick.roger@gmail.com)
 
-ENV TOOL_VERSION=1.1.1
+ENV TOOL_VERSION=1.1.3
 ENV CONTAINER_VERSION=1.1
 
 LABEL version="${CONTAINER_VERSION}"
