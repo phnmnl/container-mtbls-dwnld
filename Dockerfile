@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 
 MAINTAINER Pierrick Roger (pierrick.roger@gmail.com)
 
-ENV TOOL_VERSION=1.2.0
+ENV TOOL_VERSION=1.3.0
 ENV CONTAINER_VERSION=1.1
 
 LABEL version="${CONTAINER_VERSION}"
@@ -23,7 +23,7 @@ RUN apt-get update && \
                                                gfortran \
                                                liblapack-dev \
                                                libblas-dev && \
-	R -e "install.packages(c('getopt'), repos = 'http://cran.rstudio.com', dependencies = TRUE)" && \
+	R -e "install.packages(c('getopt', 'R.utils'), repos = 'http://cran.rstudio.com', dependencies = TRUE)" && \
     R -e "source('http://bioconductor.org/biocLite.R') ; biocLite('Risa')" && \
     git clone -b release/${TOOL_VERSION} https://github.com/workflow4metabolomics/mtbls-dwnld /files/mtbls-dwnld && \
     apt-get purge -y git make g++ gfortran && \
