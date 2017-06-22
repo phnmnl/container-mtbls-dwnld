@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 MAINTAINER Pierrick Roger (pierrick.roger@gmail.com)
 
 ENV TOOL_VERSION=2.0.2
-ENV CONTAINER_VERSION=1.1
+ENV CONTAINER_VERSION=1.2
 
 LABEL version="${CONTAINER_VERSION}"
 LABEL tool_version="${TOOL_VERSION}"
@@ -31,6 +31,8 @@ RUN apt-get update && \
     apt-get autoremove -y && \
     apt-get purge -y libxml2-dev libcurl4-openssl-dev libnetcdf-dev liblapack-dev libblas-dev && \
     rm -rf /var/lib/{apt,dpkg,cache,log}/ /tmp/* /var/tmp/*
+RUN wget http://download.asperasoft.com/download/sw/ascp-client/3.5.4/ascp-install-3.5.4.102989-linux-64.sh
+RUN bash ascp-install-3.5.4.102989-linux-64.sh
 
 # Make tool accessible through PATH
 ENV PATH=$PATH:/files/mtbls-dwnld
