@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-MAINTAINER Pierrick Roger (pierrick.roger@gmail.com)
+MAINTAINER Pierrick Roger (pierrick.rogermele@icloud.com)
 
 ENV TOOL_VERSION=2.0.5
 ENV CONTAINER_VERSION=1.2
