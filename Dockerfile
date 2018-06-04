@@ -6,8 +6,8 @@ FROM ubuntu:16.04
 MAINTAINER PhenoMeNal-H2020 Project ( phenomenal-h2020-users@googlegroups.com )
 
 ENV TOOL_NAME=mtbls-dwnld
-ENV TOOL_VERSION=3.1.1
-ENV CONTAINER_VERSION=1.3
+ENV TOOL_VERSION=4.0.1
+ENV CONTAINER_VERSION=1.4
 ENV CONTAINER_GITHUB=https://github.com/phnmnl/container-mtbls-dwnld
 
 LABEL version="${CONTAINER_VERSION}"
@@ -22,20 +22,22 @@ LABEL tags="Metabolomics"
 
 # Update, install dependencies, clone repos and clean
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y software-properties-common git wget unzip && \
-    git clone --depth 1 --single-branch -b v${TOOL_VERSION} https://github.com/workflow4metabolomics/mtbls-dwnld /files/mtbls-dwnld && \
-    apt-get purge -y git software-properties-common && \
+    apt-get install --no-install-recommends -y software-properties-common git wget unzip python3 python3-setuptools python3-pip && \
+    pip3 install wheel && \
+    pip3 install isatools && \
+    git clone --depth 1 --recursive --single-branch -b v${TOOL_VERSION} https://github.com/workflow4metabolomics/mtbls-dwnld /files/mtbls-dwnld && \
+    apt-get purge -y git software-properties-common python3-pip python-setuptools && \
     apt-get clean && \
     apt-get autoremove -y && \
     rm -rf /var/lib/{apt,dpkg,cache,log}/ /tmp/* /var/tmp/* && \
-    wget http://download.asperasoft.com/download/sw/ascp-client/3.5.4/ascp-install-3.5.4.102989-linux-64.sh && \
-    bash ascp-install-3.5.4.102989-linux-64.sh
+    wget https://download.asperasoft.com/download/sw/cli/3.7.7/aspera-cli-3.7.7.608.927cce8-linux-64-release.sh && \
+    bash aspera-cli-3.7.7.608.927cce8-linux-64-release.sh
 
 # Make tool accessible through PATH
-ENV PATH=$PATH:/files/mtbls-dwnld
+ENV PATH=$PATH:/files/mtbls-dwnld:$HOME/.aspera/cli/bin
 
 # Make test script accessible through PATH
-ENV PATH=$PATH:/files/mtbls-dwnld/test
+ENV PATH=$PATH:/files/mtbls-dwnld/bash-testthat
 
 # Define Entry point script
 ENTRYPOINT ["/files/mtbls-dwnld/mtbls-dwnld"]

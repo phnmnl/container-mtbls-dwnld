@@ -3,7 +3,7 @@
 ![Logo](w4m.png)
 
 # W4M Metabolights Downloader
-Version: 3.1.0
+Version: 4.0.1
 
 ## Short description
 
