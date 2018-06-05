@@ -1,13 +1,13 @@
 # Make sure this Docker file follow the PhenoMeNal Docker file guide at https://github.com/phnmnl/phenomenal-h2020/wiki/Dockerfile-Guide.
 # Don't forget to update resource (CPU and memory) usage specifications in PhenoMeNal Galaxy container (see https://github.com/phnmnl/phenomenal-h2020/wiki/Setting-up-Galaxy-wrappers-on-PhenoMeNal-Galaxy-Container#tool-cpu-and-memory-usage-requests-and-limits) if necessary.
 
-FROM ubuntu:16.04
+FROM debian:stretch-slim
 
 MAINTAINER PhenoMeNal-H2020 Project ( phenomenal-h2020-users@googlegroups.com )
 
 ENV TOOL_NAME=mtbls-dwnld
-ENV TOOL_VERSION=4.0.1
-ENV CONTAINER_VERSION=1.4
+ENV TOOL_VERSION=4.0.3
+ENV CONTAINER_VERSION=2.0
 ENV CONTAINER_GITHUB=https://github.com/phnmnl/container-mtbls-dwnld
 
 LABEL version="${CONTAINER_VERSION}"
@@ -34,10 +34,13 @@ RUN apt-get update -qq && \
     bash aspera-cli-3.7.7.608.927cce8-linux-64-release.sh
 
 # Make tool accessible through PATH
-ENV PATH=$PATH:/files/mtbls-dwnld:$HOME/.aspera/cli/bin
+ENV PATH=$PATH:/files/mtbls-dwnld:/root/.aspera/cli/bin
 
 # Make test script accessible through PATH
-ENV PATH=$PATH:/files/mtbls-dwnld/bash-testthat
+RUN echo "#!/bin/bash" >/files/test-mtbls-dwnld
+RUN echo "testthat.sh /files/mtbls-dwnld/test/test-mtbls-dwnld.sh" >>/files/test-mtbls-dwnld
+RUN chmod u+x /files/test-mtbls-dwnld
+ENV PATH=$PATH:/files:/files/mtbls-dwnld/bash-testthat
 
 # Define Entry point script
 ENTRYPOINT ["/files/mtbls-dwnld/mtbls-dwnld"]
