@@ -71,6 +71,9 @@ For direct docker usage:
 ```bash
 docker run container-registry.phenomenal-h2020.eu/phnmnl/mtbls-dwnld -h
 ```
+### Networking considerations
+
+The networking needs to allow UDP connections with source port 33001 to the container for the fast Aspera download. This is the case for most commercial cloud providers, including Amazon AWS and Google GCP, but some local installations might have additional firewall rules in place. See also https://test-connect.asperasoft.com/ for more information. If these connections are not allowed, the fallback to the wget download via is still possible.	    
 
 ## Publications
 
