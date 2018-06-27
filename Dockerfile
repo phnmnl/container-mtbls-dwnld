@@ -6,14 +6,14 @@ FROM debian:stretch-slim
 MAINTAINER PhenoMeNal-H2020 Project ( phenomenal-h2020-users@googlegroups.com )
 
 ENV TOOL_NAME=mtbls-dwnld
-ENV TOOL_VERSION=4.0.3
+ENV TOOL_VERSION=4.0.5
 ENV CONTAINER_VERSION=2.0
 ENV CONTAINER_GITHUB=https://github.com/phnmnl/container-mtbls-dwnld
 
 LABEL version="${CONTAINER_VERSION}"
 LABEL software.version="${TOOL_VERSION}"
 LABEL software="${TOOL_NAME}"
-LABEL base.image="ubuntu:16.04"
+LABEL base.image="debian:stretch-slim"
 LABEL description="A downloader of Metabolights studies."
 LABEL website="${CONTAINER_GITHUB}"
 LABEL documentation="${CONTAINER_GITHUB}"
