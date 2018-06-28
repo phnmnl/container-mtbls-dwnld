@@ -6,7 +6,7 @@ FROM debian:stretch-slim
 MAINTAINER PhenoMeNal-H2020 Project ( phenomenal-h2020-users@googlegroups.com )
 
 ENV TOOL_NAME=mtbls-dwnld
-ENV TOOL_VERSION=4.1.0
+ENV TOOL_VERSION=4.1.1
 ENV CONTAINER_VERSION=2.0
 ENV CONTAINER_GITHUB=https://github.com/phnmnl/container-mtbls-dwnld
 
